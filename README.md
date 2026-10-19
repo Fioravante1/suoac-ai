@@ -30,7 +30,16 @@ nenhum deles vê arquivos fora do repositório clonado.
 ```
 
 Na primeira execução o script faz `subtree add`; nas seguintes, `subtree pull`. As duas criam commit
-no repositório de destino e exigem árvore de trabalho limpa.
+no repositório de destino e exigem árvore de trabalho limpa — nos **dois** lados: `subtree split` lê
+o histórico desta fonte, não a árvore de trabalho, então regra editada e não commitada aqui não
+chegaria ao destino, e em silêncio.
+
+Só `rules/` viaja. `git subtree add` importa a **raiz** do que recebe, e apontá-lo para `main`
+entregaria o repositório inteiro: as regras um nível abaixo do esperado, em
+`compartilhado/rules/`, e o `README.md` e o `CLAUDE.md` daqui virando arquivo de regra no destino —
+tudo em `.claude/rules/**` é lido como regra. Por isso o script extrai `rules/` para o ramo
+`distribuicao`, com `git subtree split`, e distribui esse ramo. O ramo é derivado: é recriado a cada
+sincronização, nunca se commita nele à mão.
 
 ### Mecanismos que foram descartados, e por quê
 
