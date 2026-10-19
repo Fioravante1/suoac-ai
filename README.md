@@ -18,6 +18,18 @@ instruções que se contradizem, o agente pode seguir qualquer uma.
 
 Uma fonte, dois destinos, nenhuma cópia editada à mão.
 
+## Onde esta fonte vive
+
+Dois lugares, e os dois importam:
+
+- `~/projetos-pessoais/suoac/suoac-ai/`, ao lado dos dois repositórios de código. É deste caminho que
+  o `sincronizar.sh` distribui, porque ele resolve a fonte pela própria localização.
+- `github.com/Fioravante1/suoac-ai`, público, como cópia durável. Sem ele, a fonte existiria só numa
+  máquina: as cópias nos dois repositórios sobreviveriam, mas não haveria de onde sincronizar.
+
+Só o `main` vai para o remote. O ramo `distribuicao` é derivado — recriado a cada sincronização — e
+não tem por que existir lá.
+
 ## Como as regras chegam aos repositórios
 
 Por `git subtree`, em `.claude/rules/compartilhado/` de cada repositório. O conteúdo fica
