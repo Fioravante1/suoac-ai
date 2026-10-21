@@ -63,10 +63,22 @@ git fetch --quiet "$REMOTE" "$RAMO"
 
 if git ls-files --error-unmatch "$PREFIXO_DESTINO" >/dev/null 2>&1; then
   echo "atualizando $PREFIXO_DESTINO a partir de $REMOTE/$RAMO"
-  git subtree pull --prefix="$PREFIXO_DESTINO" "$REMOTE" "$RAMO" --squash
+  git subtree pull --prefix="$PREFIXO_DESTINO" "$REMOTE" "$RAMO" --squash \
+    -m "docs(regras): sincronizar regras compartilhadas"
 else
   echo "instalando $PREFIXO_DESTINO a partir de $REMOTE/$RAMO"
-  git subtree add --prefix="$PREFIXO_DESTINO" "$REMOTE" "$RAMO" --squash
+  git subtree add --prefix="$PREFIXO_DESTINO" "$REMOTE" "$RAMO" --squash \
+    -m "docs(regras): instalar as regras compartilhadas"
+fi
+
+if [[ ! -f ".agents/rules.json" ]]; then
+  mkdir -p .agents
+  cat > .agents/rules.json <<'EOF'
+{
+  "entries": [{ "path": ".claude/rules" }, { "path": ".claude/rules/compartilhado" }]
+}
+EOF
+  echo "criado .agents/rules.json apontando para .claude/rules e $PREFIXO_DESTINO"
 fi
 
 echo
