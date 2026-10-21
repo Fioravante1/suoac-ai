@@ -88,6 +88,10 @@ sincronização vai sobrescrever, e a divergência volta pela porta dos fundos.
 | `rules/idioma-do-codigo.md` | identificadores em inglês, português para humanos | arquivos de código |
 | `rules/aninhamento-e-ternarios.md` | early returns, sem ternário aninhado | arquivos de código |
 
-As duas últimas têm `paths:` no frontmatter e entram em contexto só quando o agente toca um arquivo
-de código. Isso funciona porque o subtree deixa os arquivos **dentro** do repositório — regra
-path-scoped que chega por symlink externo não carrega.
+As duas últimas têm `paths:` (Claude Code) e `trigger: model_decision` + `description:` (Gemini /
+Antigravity) no frontmatter e entram em contexto quando o agente toca um arquivo de código. As
+quatro primeiras têm `trigger: always_on` e valem sempre. Isso funciona porque o subtree deixa os
+arquivos **dentro** do repositório — regra path-scoped que chega por symlink externo não carrega no
+Claude Code, e `.agents/rules.json` em cada repositório aponta o Antigravity diretamente para
+`.claude/rules` e `.claude/rules/compartilhado`, sem duplicar arquivos. Já o Codex descobre as
+regras pela tabela e instrução de leitura em `AGENTS.md`.
