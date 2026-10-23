@@ -2,7 +2,7 @@
 
 Fonte de verdade das regras de trabalho que valem para **os dois** repositórios do SUOAC —
 `suoac-back` e `suoac-front`. O que mora aqui é processo e postura: commits, Jira, branches e PRs,
-e as duas regras de código que são idênticas nos dois lados.
+e as regras de código que são idênticas nos dois lados.
 
 O que é específico de um stack **não** mora aqui. Arquitetura FSD, Prisma, design system, NestJS,
 Playwright e afins vivem em `.claude/rules/` do repositório a que pertencem.
@@ -87,8 +87,9 @@ sincronização vai sobrescrever, e a divergência volta pela porta dos fundos.
 | `rules/postura-do-agente.md` | decisões são do usuário, dependência pendente, verificação | sempre |
 | `rules/idioma-do-codigo.md` | identificadores em inglês, português para humanos | arquivos de código |
 | `rules/aninhamento-e-ternarios.md` | early returns, sem ternário aninhado | arquivos de código |
+| `rules/lacos-e-iteracao.md` | métodos de array e string em vez de `while`/`for` com contador | arquivos de código |
 
-As duas últimas têm `paths:` (Claude Code) e `trigger: model_decision` + `description:` (Gemini /
+As três últimas têm `paths:` (Claude Code) e `trigger: model_decision` + `description:` (Gemini /
 Antigravity) no frontmatter e entram em contexto quando o agente toca um arquivo de código. As
 quatro primeiras têm `trigger: always_on` e valem sempre. Isso funciona porque o subtree deixa os
 arquivos **dentro** do repositório — regra path-scoped que chega por symlink externo não carrega no
