@@ -84,7 +84,7 @@ sincronização vai sobrescrever, e a divergência volta pela porta dos fundos.
 | `rules/commits.md` | Conventional Commits, organização por significado, sem trailer de IA | sempre |
 | `rules/branches-e-prs.md` | nome de branch, título e corpo de PR, quando commitar | sempre |
 | `rules/jira.md` | rastreamento de card, convenções do projeto `SUC`, como escrever card | sempre |
-| `rules/postura-do-agente.md` | decisões são do usuário, dependência pendente, verificação | sempre |
+| `rules/postura-do-agente.md` | decisões são do usuário, o card vai até o fim, verificação | sempre |
 | `rules/idioma-do-codigo.md` | identificadores em inglês, português para humanos | arquivos de código |
 | `rules/aninhamento-e-ternarios.md` | early returns, sem ternário aninhado | arquivos de código |
 | `rules/lacos-e-iteracao.md` | métodos de array e string em vez de `while`/`for` com contador | arquivos de código |
